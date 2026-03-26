@@ -18,6 +18,12 @@ const Header = () => {
           <a href="#skills" className="text-gray-600 dark:text-gray-300 hover:text-slate-900 dark:hover:text-white transition-colors">
             Fähigkeiten
           </a>
+          <a href="#projects" className="text-gray-600 dark:text-gray-300 hover:text-slate-900 dark:hover:text-white transition-colors">
+            Projekte
+          </a>
+          <a href="#contact" className="text-gray-600 dark:text-gray-300 hover:text-slate-900 dark:hover:text-white transition-colors">
+            Kontakt
+          </a>
         </div>
         <button
           className="md:hidden bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-4 py-2 rounded-lg"
@@ -33,6 +39,12 @@ const Header = () => {
           </a>
           <a href="#skills" className="text-gray-600 dark:text-gray-300 hover:text-slate-900 dark:hover:text-white transition-colors">
             Fähigkeiten
+          </a>
+          <a href="#projects" className="text-gray-600 dark:text-gray-300 hover:text-slate-900 dark:hover:text-white transition-colors">
+            Projekte
+          </a>
+          <a href="#contact" className="text-gray-600 dark:text-gray-300 hover:text-slate-900 dark:hover:text-white transition-colors">
+            Kontakt
           </a>
         </div>
       )}
@@ -128,6 +140,85 @@ const SkillsSection = () => {
   );
 };
 
+const ProjectsSection = () => {
+  const projects = [
+    {
+      title: 'Lorem Ipsum Project One',
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+      tags: ['React', 'Next.js', 'Tailwind CSS'],
+    },
+    {
+      title: 'Lorem Ipsum Project Two',
+      description:
+        'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      tags: ['JavaScript', 'REST API', 'UI Design'],
+    },
+    {
+      title: 'Lorem Ipsum Project Three',
+      description:
+        'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+      tags: ['TypeScript', 'Node.js', 'Testing'],
+    },
+  ];
+
+  return (
+    <section id="projects" className="py-20 md:py-32 bg-white dark:bg-slate-950">
+      <div className="max-w-6xl mx-auto px-6">
+        <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-12">
+          Projekte
+        </h2>
+        <div className="grid md:grid-cols-3 gap-8">
+          {projects.map((project, idx) => (
+            <article key={idx} className="bg-gray-50 dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg p-8">
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">
+                {project.title}
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
+                {project.description}
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {project.tags.map((tag, i) => (
+                  <span key={i} className="text-sm bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 px-3 py-1 rounded-full">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const ContactSection = () => (
+  <section id="contact" className="py-20 md:py-32 bg-gray-50 dark:bg-slate-900">
+    <div className="max-w-4xl mx-auto px-6">
+      <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-8 text-center">
+        Kontakt
+      </h2>
+      <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed text-center mb-10">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+      </p>
+      <div className="grid md:grid-cols-3 gap-6">
+        <div className="bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-lg p-6 text-center">
+          <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">Email</h3>
+          <p className="text-gray-600 dark:text-gray-300">lorem@ipsum.com</p>
+        </div>
+        <div className="bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-lg p-6 text-center">
+          <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">LinkedIn</h3>
+          <p className="text-gray-600 dark:text-gray-300">linkedin.com/in/loremipsum</p>
+        </div>
+        <div className="bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-lg p-6 text-center">
+          <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">Standort</h3>
+          <p className="text-gray-600 dark:text-gray-300">Lorem City, Ipsumland</p>
+        </div>
+      </div>
+    </div>
+  </section>
+);
+
 
 
 const Footer = () => (
@@ -145,6 +236,8 @@ export default function Home() {
       <HeroSection />
       <AboutSection />
       <SkillsSection />
+      <ProjectsSection />
+      <ContactSection />
       <Footer />
     </div>
   );
