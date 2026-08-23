@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -53,14 +54,14 @@ const Header = () => {
 };
 
 const HeroSection = () => (
-  <section className="bg-gradient-to-br from-white to-gray-50 dark:from-slate-950 dark:to-slate-900 py-20 md:py-32">
+  <section className="py-20 md:py-32">
     <div className="max-w-6xl mx-auto px-6">
       <div className="max-w-3xl">
         <h1 className="text-4xl md:text-6xl font-bold text-slate-900 dark:text-white mb-6">
-          Lorem ipsum dolor sit amet
+          Timo Nobs
         </h1>
         <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-8">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
+          Ich bin ein lernender Webentwickler an der IMS in Hottingen. Ich arbeite mit next.js, Datenbanken und habe auch Grundkenntnisse in anderen Programmiersprachen.
         </p>
         <div className="flex gap-4 flex-wrap">
           <a
@@ -82,7 +83,7 @@ const HeroSection = () => (
 );
 
 const AboutSection = () => (
-  <section id="about" className="py-20 md:py-32 bg-white dark:bg-slate-950">
+  <section id="about" className="py-20 md:py-32 border-t border-gray-200 dark:border-slate-800">
     <div className="max-w-6xl mx-auto px-6">
       <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-12">
         Über mich
@@ -90,48 +91,108 @@ const AboutSection = () => (
       <div className="grid md:grid-cols-2 gap-12 items-center">
         <div>
           <p className="text-gray-600 dark:text-gray-300 text-lg mb-6 leading-relaxed">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
-          <p className="text-gray-600 dark:text-gray-300 text-lg mb-6 leading-relaxed">
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            Hi, ich bin Timo Nobs. Ich besuche aktuell die Informatikmittelschule in Zürich Hottingen und habe grosses Interesse an Datenbanken so wie diversen Programmiersprachen im Front- sowie Backend.
           </p>
           <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
-            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            Ich arbeite gerne im Team und löse zuverlässig meine Aufgaben.
           </p>
         </div>
-        <div className="bg-gradient-to-br from-blue-400 to-blue-600 h-64 md:h-96 rounded-lg"></div>
+        <div className="relative h-64 md:h-96 rounded-lg border border-gray-200 dark:border-slate-800 overflow-hidden">
+          <Image
+              src="/img.png"
+              alt="Timo Nobs"
+              fill
+              className="object-cover"
+              sizes="(min-width: 768px) 50vw, 100vw"
+          />
+        </div>
       </div>
     </div>
   </section>
 );
 
 const SkillsSection = () => {
+  const variantClasses = {
+    primary:
+      'bg-blue-50 text-blue-700 ring-blue-200 dark:bg-blue-900/30 dark:text-blue-200 dark:ring-blue-800/50',
+    success:
+      'bg-emerald-50 text-emerald-700 ring-emerald-200 dark:bg-emerald-900/25 dark:text-emerald-200 dark:ring-emerald-800/50',
+    violet:
+      'bg-violet-50 text-violet-700 ring-violet-200 dark:bg-violet-900/25 dark:text-violet-200 dark:ring-violet-800/50',
+    neutral:
+      'bg-slate-50 text-slate-700 ring-slate-200 dark:bg-slate-700/30 dark:text-slate-100 dark:ring-slate-600/60',
+    warning:
+      'bg-amber-50 text-amber-800 ring-amber-200 dark:bg-amber-900/20 dark:text-amber-200 dark:ring-amber-800/50',
+  };
+
+  const SkillToken = ({ label, variant = 'neutral' }) => (
+    <span
+      className={`inline-flex items-center gap-2 rounded-full px-3 py-1 text-sm font-medium ring-1 ring-inset select-none whitespace-nowrap ${
+        variantClasses[variant] || variantClasses.neutral
+      }`}
+    >
+      <span className="h-1.5 w-1.5 rounded-full bg-current opacity-70" />
+      {label}
+    </span>
+  );
+
   const skills = [
-    { category: 'Lorem Ipsum', items: ['Skill 1', 'Skill 2', 'Skill 3', 'Skill 4', 'Skill 5'] },
-    { category: 'Dolor Sit', items: ['Skill 6', 'Skill 7', 'Skill 8', 'Skill 9', 'Skill 10'] },
-    { category: 'Amet Consectetur', items: ['Skill 11', 'Skill 12', 'Skill 13', 'Skill 14', 'Skill 15'] },
+    {
+      category: 'Frontend',
+      accentClass: 'border-t-blue-500',
+      items: [
+        { label: 'React', variant: 'violet' },
+        { label: 'Next.js', variant: 'violet' },
+        { label: 'Tailwind CSS', variant: 'violet' },
+        { label: 'HTML', variant: 'neutral' },
+        { label: 'CSS', variant: 'neutral' },
+      ],
+    },
+    {
+      category: 'Backend',
+      accentClass: 'border-t-emerald-500',
+      items: [
+        { label: 'Python', variant: 'success' },
+        { label: 'Java', variant: 'success' },
+        { label: 'REST APIs', variant: 'success' },
+        { label: 'SQL', variant: 'warning' },
+        { label: 'NoSQL', variant: 'warning' },
+      ],
+    },
+    {
+      category: 'Tools',
+      accentClass: 'border-t-violet-500',
+      items: [
+        { label: 'Kubernetes', variant: 'violet' },
+        { label: 'Bash', variant: 'violet' },
+        { label: 'PowerShell', variant: 'violet' },
+      ],
+    },
   ];
 
   return (
-    <section id="skills" className="py-20 md:py-32 bg-gray-50 dark:bg-slate-900">
+    <section id="skills" className="py-20 md:py-32 border-t border-gray-200 dark:border-slate-800">
       <div className="max-w-6xl mx-auto px-6">
         <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-12">
           Meine Fähigkeiten
         </h2>
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {skills.map((skillGroup, idx) => (
-            <div key={idx} className="bg-white dark:bg-slate-800 p-8 rounded-lg border border-gray-200 dark:border-slate-700">
-              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">
-                {skillGroup.category}
-              </h3>
-              <ul className="space-y-3">
+            <div
+              key={idx}
+              className={`bg-white dark:bg-slate-800 p-8 rounded-xl border border-gray-200 dark:border-slate-700 border-t-4 ${skillGroup.accentClass} transition hover:-translate-y-0.5 hover:shadow-lg hover:shadow-black/5 dark:hover:shadow-black/30`}
+            >
+              <div className="flex items-center justify-between gap-4 mb-5">
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white">
+                  {skillGroup.category}
+                </h3>
+                <span className="text-xs text-gray-500 dark:text-gray-400">Beispiele</span>
+              </div>
+              <div className="flex flex-wrap gap-2">
                 {skillGroup.items.map((skill, i) => (
-                  <li key={i} className="text-gray-600 dark:text-gray-300 flex items-center">
-                    <span className="w-2 h-2 bg-blue-600 rounded-full mr-3"></span>
-                    {skill}
-                  </li>
+                  <SkillToken key={i} label={skill.label} variant={skill.variant} />
                 ))}
-              </ul>
+              </div>
             </div>
           ))}
         </div>
@@ -143,34 +204,34 @@ const SkillsSection = () => {
 const ProjectsSection = () => {
   const projects = [
     {
-      title: 'Lorem Ipsum Project One',
+      title: 'Projekt 1 Portfolio / Landing Page',
       description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-      tags: ['React', 'Next.js', 'Tailwind CSS'],
+        'Das Ziel war es eine funktionales Portfolio zu erstellen um mich damit Bewerben zu können und ein bisschen neues auszuprobieren.',
+      tags: ['Next.js', 'React', 'Tailwind CSS'],
     },
     {
-      title: 'Lorem Ipsum Project Two',
+      title: 'Projekt 2 Daily Puzzle',
       description:
-        'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-      tags: ['JavaScript', 'REST API', 'UI Design'],
+        'Mein Ziel ist es ein kleines Spiel zu erstellen das wie Wordle funktioniert und das ich mit Datenbanken experimentieren konnte. Das ist ein neues Projekt und braucht noch seine Zeit.',
+      tags: ['Next.js', 'SQL'],
     },
     {
-      title: 'Lorem Ipsum Project Three',
+      title: 'Projekt 3 Mini Taskplaner',
       description:
-        'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-      tags: ['TypeScript', 'Node.js', 'Testing'],
+        'Kleines begonnenes Schulprojekt',
+      tags: ['Java','Spring Boot'],
     },
   ];
 
   return (
-    <section id="projects" className="py-20 md:py-32 bg-white dark:bg-slate-950">
+    <section id="projects" className="py-20 md:py-32 border-t border-gray-200 dark:border-slate-800">
       <div className="max-w-6xl mx-auto px-6">
         <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-12">
           Projekte
         </h2>
         <div className="grid md:grid-cols-3 gap-8">
           {projects.map((project, idx) => (
-            <article key={idx} className="bg-gray-50 dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-lg p-8">
+            <article key={idx} className="bg-white dark:bg-slate-950 border border-gray-200 dark:border-slate-800 rounded-lg p-8">
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">
                 {project.title}
               </h3>
@@ -193,26 +254,22 @@ const ProjectsSection = () => {
 };
 
 const ContactSection = () => (
-  <section id="contact" className="py-20 md:py-32 bg-gray-50 dark:bg-slate-900">
+  <section id="contact" className="py-20 md:py-32 border-t border-gray-200 dark:border-slate-800">
     <div className="max-w-4xl mx-auto px-6">
       <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-8 text-center">
         Kontakt
       </h2>
       <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed text-center mb-10">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        Wenn Sie Fragen haben oder mit mir zusammenarbeiten möchten, können Sie mich gerne über die untenstehenden Kontaktinformationen erreichen.
       </p>
-      <div className="grid md:grid-cols-3 gap-6">
-        <div className="bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-lg p-6 text-center">
+      <div className="grid md:grid-cols-2 gap-6">
+        <div className="bg-white dark:bg-slate-950 border border-gray-200 dark:border-slate-800 rounded-lg p-6 text-center">
+          <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">Github</h3>
+          <p className="text-gray-600 dark:text-gray-300">https://github.com/im24b-nobst</p>
+        </div>
+        <div className="bg-white dark:bg-slate-950 border border-gray-200 dark:border-slate-800 rounded-lg p-6 text-center">
           <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">Email</h3>
-          <p className="text-gray-600 dark:text-gray-300">lorem@ipsum.com</p>
-        </div>
-        <div className="bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-lg p-6 text-center">
-          <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">LinkedIn</h3>
-          <p className="text-gray-600 dark:text-gray-300">linkedin.com/in/loremipsum</p>
-        </div>
-        <div className="bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-lg p-6 text-center">
-          <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">Standort</h3>
-          <p className="text-gray-600 dark:text-gray-300">Lorem City, Ipsumland</p>
+          <p className="text-gray-600 dark:text-gray-300">timo.nobs@gmail.com</p>
         </div>
       </div>
     </div>
@@ -224,7 +281,7 @@ const ContactSection = () => (
 const Footer = () => (
   <footer className="bg-slate-900 dark:bg-black text-gray-300 py-8">
     <div className="max-w-6xl mx-auto px-6 text-center">
-      <p>© 2025 Mein Portfolio. Alle Rechte vorbehalten.</p>
+      <p>© 2026 Mein Portfolio. Alle Rechte vorbehalten.</p>
     </div>
   </footer>
 );
